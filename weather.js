@@ -1,13 +1,11 @@
 async function getWeather() {
     const city = document.getElementById('city').value.trim();
-    const apiKey = '585d4e4a24479eb6ebc997ebb1e9db24'; // Replace with your actual API key
+    const apiKey = '2cfef926928d9e951e538ed0f1cb2a9'; // Replace with your actual API key
 
     if (!city) {
-        if (navigator.geolocation) {
-            latitude: 51.5074° N
-            longitude: 0.1278° W
-                const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-                await fetchWeather(url, latitude, longitude);
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${london}&appid=${apiKey}&units=metric`;
+        await fetchWeather(url);
+                await fetchWeather(url);
             } else {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         await fetchWeather(url);
@@ -15,7 +13,7 @@ async function getWeather() {
 }
 
 async function getUVIndex(lat, lon) {
-    const apiKey = '585d4e4a24479eb6ebc997ebb1e9db24'; // Replace with your actual API key
+    const apiKey = '2cfef926928d9e951e538ed0f1cb2a9'; // Replace with your actual API key
     const url = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     try {
@@ -107,7 +105,7 @@ window.onload = () => {
 };
 
 async function getWeeklyForecast(lat, lon) {
-    const apiKey = '585d4e4a24479eb6ebc997ebb1e9db24'; // Replace with your actual API key
+    const apiKey = '2cfef926928d9e951e538ed0f1cb2a9'; // Replace with your actual API key
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
     try {
