@@ -1,9 +1,23 @@
 async function getWeather() {
-    const city = document.getElementById('city').value.trim() || "London";  // Default to "London"
-    const apiKey = '32cfef926928d9e951e538ed0f1cb2a9';
+    const city = document.getElementById('city').value.trim();
+    const apiKey = '32cfef926928d9e951e538ed0f1cb2a9'; 
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    await fetchWeather(url);
+    if (!city) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const { latitude, longitude } = position.coords;
+                const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+                await fetchWeather(url, latitude, longitude);
+            }, (error) => {
+                document.getElementById('weather-result').innerHTML = `<p>Geolocation error: ${error.message}. Please enter a city manually.</p>`;
+            });
+        } else {
+            document.getElementById('weather-result').innerHTML = `<p>Your browser does not support geolocation. Please enter a city manually.</p>`;
+        }
+    } else {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        await fetchWeather(url);
+    }
 }
 async function getUVIndex(lat, lon) {
     const apiKey = '32cfef926928d9e951e538ed0f1cb2a9'; // Replace with your actual API key
