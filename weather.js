@@ -4,17 +4,11 @@ async function getWeather() {
 
     if (!city) {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
+            latitude: 51.5074° N
+            longitude: 0.1278° W
                 const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
                 await fetchWeather(url, latitude, longitude);
-            }, (error) => {
-                document.getElementById('weather-result').innerHTML = `<p>Geolocation error: ${error.message}. Please enter a city manually.</p>`;
-            });
-        } else {
-            document.getElementById('weather-result').innerHTML = `<p>Your browser does not support geolocation. Please enter a city manually.</p>`;
-        }
-    } else {
+            } else {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         await fetchWeather(url);
     }
